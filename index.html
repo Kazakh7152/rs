@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anomaly Zone</title>
+  <style>
+    @font-face {
+      font-family: 'StalkerAlt';
+      src: url('https://fonts.cdnfonts.com/s/102047/Road_Rage.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Контейнер с фоном */
+    .background-container {
+      position: relative;
+      width: 100%;
+      max-width: 1920px;
+      aspect-ratio: 16/9;
+      background: url('https://i.ibb.co.com/hJr9kW4q/5.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    /* Заголовок сверху */
+    .main-title {
+      position: absolute;
+      top: 8%;
+      left: 51%;
+      transform: translateX(-50%);
+      font-family: monospace, sans-serif;
+      font-size: 3.5vw;
+      color: #ffb84d;
+      letter-spacing: 0.3vw;
+      text-transform: uppercase;
+      text-shadow: 
+        0 0 5px rgba(255, 200, 100, 0.8),
+        0 0 15px rgba(255, 150, 50, 0.6),
+        0 0 25px rgba(255, 100, 0, 0.5),
+        0 0 40px rgba(0, 0, 0, 0.9);
+      animation: flicker 2.5s infinite;
+    }
+
+    /* Эффект сталкерского мерцания */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+       34% {
+        opacity: 0.1;
+      }
+       
+       
+      
+    }
+
+    /* Загрузка */
+    .loading {
+      position: absolute;
+      left: 50%;
+      bottom: 28%;
+      transform: translateX(-50%);
+      font-family: 'consolas', sans-serif;
+      font-size: 2vw;
+      color: #ffb84d;
+      text-shadow: 0 0 1vh rgba(255, 180, 77, 0.7);
+    }
+
+    /* Блок советов */
+    .tips {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 9%;
+      width: 90%;
+      color: #ffdb99;
+      font-family: Inter, 'monospace', sans-serif;
+      font-size: 1vw;
+      text-align: center;
+    }
+
+    .tips h3 {
+      margin: 0 0 0.5vh 0;
+      color: #ffb84d;
+      font-family: 'monospace', sans-serif;
+      font-size: 1vw;
+    }
+
+    /* Иконка радиации */
+    .radiation-icon {
+      position: absolute;
+      bottom: 5%;
+      left: 3%;
+      width: 6%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-container">
+
+    <!-- Заголовок -->
+    <div class="main-title">Anomaly Zone</div>
+
+    <!-- Советы -->
+    <div class="tips">
+      <h3>Совет:</h3>
+      <div id="tipText"></div>
+    </div>
+  </div>
+
+  <script>
+    const tips = [
+      'В Зоне нет случайностей — если нашёл артефакт слишком легко, значит, рядом что-то тебя уже ждёт.',
+      'Патроны — это валюта. Береги их, торгуй ими, но никогда не оставайся без пары магазинов в запасе.',
+      'Аномалия «Воронка» тянет вниз быстрее, чем успеешь выругаться. Болт в помощь — кидай, пока жив.',
+      'Не верь улыбкам наёмников. Их контракт всегда дороже твоей жизни.',
+      'Артефакт «Каменный цветок» красив, но радиоактивен — таскай с контейнером или умрёшь медленно.',
+      'Хабар в схронах редко лежит бесхозно — кто-то его туда положил и может вернуться.',
+      'Ночью в Зоне тишина громче выстрелов — прислушивайся, она подскажет, кто рядом.',
+      'Пси-излучение ломает не кости, а голову. Не недооценивай его.',
+      'Если услышал треск детектора — не суетись, а думай: артефакт рядом или ловушка?',
+      'Зона не любит глупых — будь хитрым, будь живым.'
+    ];
+
+    let tipIndex = 0;
+    const tipText = document.getElementById('tipText');
+
+    function showTip() {
+      tipText.textContent = tips[tipIndex];
+      tipIndex = (tipIndex + 1) % tips.length;
+    }
+
+    showTip();
+    setInterval(showTip, 30000);
+  </script>
+</body>
+</html>
